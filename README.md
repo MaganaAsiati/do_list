@@ -1,7 +1,7 @@
 
 ## Live Demo
 
-> [Live Demo](https://maganaasiati.github.io/do_list/)
+> [Live Demo](https://maganaasiati.github.io)
 ## Description
 
 > In this project, I build a simple HTML list of To Do tasks. The list will be styled according to the specifications listed later in this lesson. This simple web page will be built using webpack and served by a webpack dev server.
