@@ -1,4 +1,4 @@
-## TO DO LIST
+
 ## Live Demo
 
 > [Live Demo](https://maganaasiati.github.io/do_list/)
