@@ -59,7 +59,7 @@ select:focus {
 }
 
 .svg-inline--fa:hover {
-  color: rgb(63, 62, 62);
+  color: rgb(248, 68, 68);
   cursor: pointer;
   font-size: 12px;
 }
@@ -170,4 +170,9 @@ input[type='text'] {
 
 .txt-bottom:hover {
   cursor: pointer;
+}
+
+.inline {
+  text-decoration: line-through;
+  font-style: italic;
 }
