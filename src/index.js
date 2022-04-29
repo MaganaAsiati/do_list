@@ -58,9 +58,67 @@ const populateHtml = (tasks) => {
     li.appendChild(fDiv);
     li.appendChild(line);
     container.appendChild(li);
+    fIpt.addEventListener('click', () => {
+      element.completed = !element.completed;
+      if (element.completed) {
+        sIpt.classList.add('inline');
+      } else {
+        sIpt.classList.remove('inline');
+      }
+    });
+
+    oDiv.addEventListener('click', () => {
+      if (sIpt.readOnly) {
+        sIpt.readOnly = false;
+        oDiv.style.display = 'none';
+        dDiv.style.display = 'block';
+        li.style.backgroundColor = 'rgb(235, 252, 231)';
+        sIpt.style.backgroundColor = 'rgb(235, 252, 231)';
+      }
+    });
+
+    sIpt.addEventListener('keyup', (event) => {
+      if (event.key === 'Enter') {
+        sIpt.readOnly = true;
+        oDiv.style.display = 'block';
+        dDiv.style.display = 'none';
+        li.style.backgroundColor = 'white';
+        sIpt.style.backgroundColor = 'white';
+        updateTask(element.id, sIpt.value);
+      }
+    });
+
+    dDiv.addEventListener('click', () => {
+      removeTask(element.index);
+      populateHtml(orderTasks(loadStorage()));
+    });
   });
 };
 
+enterButton.addEventListener('click', () => {
+  if (descInput.value !== '') {
+    const index = loadStorage().length + 1;
+    const completed = false;
+    const description = descInput.value;
+    const task = addTask(index, completed, description);
+    descInput.value = '';
+    populateHtml(orderTasks(task));
+  }
+});
+
+descInput.addEventListener('keyup', (event) => {
+  if (event.key === 'Enter') {
+    if (descInput.value !== '') {
+      const index = loadStorage().length + 1;
+      const completed = false;
+      const description = descInput.value;
+      const task = addTask(index, completed, description);
+      descInput.value = '';
+      populateHtml(orderTasks(task));
+    }
+  }
+});
+
 window.addEventListener('load', () => {
-  populateHtml(orderTasks(taskList));
+  populateHtml(orderTasks(loadStorage()));
 });
