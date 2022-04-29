@@ -22,6 +22,10 @@ const populateHtml = (tasks) => {
     const sDiv = document.createElement('div');
     const fIpt = document.createElement('input');
     const sIpt = document.createElement('input');
+    const oDiv = document.createElement('div');
+    const dDiv = document.createElement('div');
+    const iconOpt = document.createElement('i');
+    const iconDel = document.createElement('i');
     const iDiv = document.createElement('div');
     const icon = document.createElement('i');
     const line = document.createElement('div');
@@ -31,13 +35,16 @@ const populateHtml = (tasks) => {
     fIpt.className = 'checkbox';
     sIpt.className = 'description';
     iDiv.className = 'ctn-icon';
-    icon.className = 'fa-solid fa-ellipsis-vertical';
+    iconOpt.className = 'fa-solid fa-ellipsis-vertical';
+    iconDel.className = 'fa-solid fa-trash-can';
     line.className = 'line';
 
     fIpt.setAttribute('type', 'checkbox');
 
     sIpt.setAttribute('type', 'text');
+    dDiv.style.display = 'none';
     sIpt.value = element.description;
+    sIpt.readOnly = true;
 
     sDiv.appendChild(fIpt);
     sDiv.appendChild(sIpt);
