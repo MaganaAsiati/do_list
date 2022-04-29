@@ -15,6 +15,7 @@ const enterButton = document.getElementById('ctn-icon-arrow');
 const orderTasks = (listTask) => listTask.sort((a, b) => a.index - b.index);
 
 const populateHtml = (tasks) => {
+  container.innerHTML = '';
   tasks.forEach((element) => {
     const li = document.createElement('li');
     const fDiv = document.createElement('div');
