@@ -1,6 +1,5 @@
 import './style.css';
-import { addTask, removeTask, updateTask } from './modules/crud.js';
-import { loadStorage } from './modules/storage.js';
+import Task from './modules/task.js';
 
 // Font Awesome 5 (Free)
 import '@fortawesome/fontawesome-free/js/fontawesome.js';
@@ -9,24 +8,24 @@ import '@fortawesome/fontawesome-free/js/regular.js'; // https://fontawesome.com
 import '@fortawesome/fontawesome-free/js/brands.js'; // https://fontawesome.com/icons?d=gallery&s=brands&m=free
 
 const container = document.getElementById('ctn-task-list');
-const descInput = document.getElementById('input-txt');
-const enterButton = document.getElementById('ctn-icon-arrow');
+
+const task1 = new Task(1, false, 'wash the dishes');
+const task2 = new Task(0, false, 'complete To Do list project');
+const task3 = new Task(3, false, "Let's do one more");
+
+const taskList = [task1, task2, task3];
 
 const orderTasks = (listTask) => listTask.sort((a, b) => a.index - b.index);
 
 const populateHtml = (tasks) => {
-  container.innerHTML = '';
   tasks.forEach((element) => {
     const li = document.createElement('li');
     const fDiv = document.createElement('div');
     const sDiv = document.createElement('div');
     const fIpt = document.createElement('input');
-    const oDiv = document.createElement('div');
-    const dDiv = document.createElement('div');
     const sIpt = document.createElement('input');
     const iDiv = document.createElement('div');
-    const iconOpt = document.createElement('i');
-    const iconDel = document.createElement('i');
+    const icon = document.createElement('i');
     const line = document.createElement('div');
 
     fDiv.className = 'ctn-task';
@@ -34,89 +33,25 @@ const populateHtml = (tasks) => {
     fIpt.className = 'checkbox';
     sIpt.className = 'description';
     iDiv.className = 'ctn-icon';
-    iconOpt.className = 'fa-solid fa-ellipsis-vertical';
-    iconDel.className = 'fa-solid fa-trash-can';
+    icon.className = 'fa-solid fa-ellipsis-vertical';
     line.className = 'line';
 
     fIpt.setAttribute('type', 'checkbox');
+
     sIpt.setAttribute('type', 'text');
-    dDiv.style.display = 'none';
     sIpt.value = element.description;
-    sIpt.readOnly = true;
 
     sDiv.appendChild(fIpt);
     sDiv.appendChild(sIpt);
-    oDiv.appendChild(iconOpt);
-    dDiv.appendChild(iconDel);
-    iDiv.appendChild(oDiv);
-    iDiv.appendChild(dDiv);
+    iDiv.appendChild(icon);
     fDiv.appendChild(sDiv);
     fDiv.appendChild(iDiv);
     li.appendChild(fDiv);
     li.appendChild(line);
     container.appendChild(li);
-
-    fIpt.addEventListener('click', () => {
-      element.completed = !element.completed;
-      if (element.completed) {
-        sIpt.classList.add('inline');
-      } else {
-        sIpt.classList.remove('inline');
-      }
-    });
-
-    oDiv.addEventListener('click', () => {
-      if (sIpt.readOnly) {
-        sIpt.readOnly = false;
-        oDiv.style.display = 'none';
-        dDiv.style.display = 'block';
-        li.style.backgroundColor = 'rgb(235, 252, 231)';
-        sIpt.style.backgroundColor = 'rgb(235, 252, 231)';
-      }
-    });
-
-    sIpt.addEventListener('keyup', (event) => {
-      if (event.key === 'Enter') {
-        sIpt.readOnly = true;
-        oDiv.style.display = 'block';
-        dDiv.style.display = 'none';
-        li.style.backgroundColor = 'white';
-        sIpt.style.backgroundColor = 'white';
-        updateTask(element.id, sIpt.value);
-      }
-    });
-
-    dDiv.addEventListener('click', () => {
-      removeTask(element.index);
-      populateHtml(orderTasks(loadStorage()));
-    });
   });
 };
 
-enterButton.addEventListener('click', () => {
-  if (descInput.value !== '') {
-    const index = loadStorage().length + 1;
-    const completed = false;
-    const description = descInput.value;
-    const task = addTask(index, completed, description);
-    descInput.value = '';
-    populateHtml(orderTasks(task));
-  }
-});
-
-descInput.addEventListener('keyup', (event) => {
-  if (event.key === 'Enter') {
-    if (descInput.value !== '') {
-      const index = loadStorage().length + 1;
-      const completed = false;
-      const description = descInput.value;
-      const task = addTask(index, completed, description);
-      descInput.value = '';
-      populateHtml(orderTasks(task));
-    }
-  }
-});
-
 window.addEventListener('load', () => {
-  populateHtml(orderTasks(loadStorage()));
+  populateHtml(orderTasks(taskList));
 });
