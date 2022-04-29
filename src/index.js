@@ -1,5 +1,6 @@
 import './style.css';
-import Task from './modules/task.js';
+import { addTask, removeTask, updateTask } from './modules/crud.js';
+import { loadStorage } from './modules/storage.js';
 
 // Font Awesome 5 (Free)
 import '@fortawesome/fontawesome-free/js/fontawesome.js';
@@ -8,12 +9,8 @@ import '@fortawesome/fontawesome-free/js/regular.js'; // https://fontawesome.com
 import '@fortawesome/fontawesome-free/js/brands.js'; // https://fontawesome.com/icons?d=gallery&s=brands&m=free
 
 const container = document.getElementById('ctn-task-list');
-
-const task1 = new Task(1, false, 'wash the dishes');
-const task2 = new Task(0, false, 'complete To Do list project');
-const task3 = new Task(3, false, "Let's do one more");
-
-const taskList = [task1, task2, task3];
+const descInput = document.getElementById('input-txt');
+const enterButton = document.getElementById('ctn-icon-arrow');
 
 const orderTasks = (listTask) => listTask.sort((a, b) => a.index - b.index);
 
