@@ -49,6 +49,10 @@ const populateHtml = (tasks) => {
     sDiv.appendChild(fIpt);
     sDiv.appendChild(sIpt);
     iDiv.appendChild(icon);
+    oDiv.appendChild(iconOpt);
+    dDiv.appendChild(iconDel);
+    iDiv.appendChild(oDiv);
+    iDiv.appendChild(dDiv);
     fDiv.appendChild(sDiv);
     fDiv.appendChild(iDiv);
     li.appendChild(fDiv);
