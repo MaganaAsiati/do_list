@@ -1,6 +1,7 @@
 import './style.css';
 import { addTask, removeTask, updateTask } from './modules/crud.js';
 import { loadStorage } from './modules/storage.js';
+import isComplete from './modules/state.js';
 
 // Font Awesome 5 (Free)
 import '@fortawesome/fontawesome-free/js/fontawesome.js';
