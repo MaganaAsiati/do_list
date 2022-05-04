@@ -37,7 +37,7 @@ const populateHtml = (tasks) => {
     fDiv.className = 'ctn-task';
     sDiv.className = 'ctn-left';
     fIpt.className = 'checkbox';
-    sIpt.className = 'description';
+    sIpt.className = 'description style-size';
     iDiv.className = 'ctn-icon';
     iconOpt.className = 'fa-solid fa-ellipsis-vertical';
     iconDel.className = 'fa-solid fa-trash-can';

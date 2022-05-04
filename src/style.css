@@ -128,18 +128,18 @@ select:focus {
   font-size: 0.7em;
 }
 
-.description::placeholder {
+.style-size {
   opacity: 1;
   color: black;
   font-weight: var(--font-weight);
+}
+
+.description::placeholder {
   font-size: 1em;
   font-family: var(--font);
 }
 
 input[type='text'] {
-  opacity: 1;
-  color: black;
-  font-weight: var(--font-weight);
   font-size: 0.7em;
   font-family: var(--font);
 }
